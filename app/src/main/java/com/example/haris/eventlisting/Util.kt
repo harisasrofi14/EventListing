@@ -91,7 +91,6 @@ fun isNetworkAvailable(context: Context): Boolean {
 }
 
 fun toMilis(strStartDate: String): Long {
-    val readFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     val writeFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     val date = writeFormat.parse(strStartDate)
     val calendar = Calendar.getInstance()
