@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:id="@+id/coordinatorLayout"
     tools:context=".view.MainActivity">
-    <include layout="@layout/app_toolbar"/>
+    <include layout="@layout/app_toolbar"
+        android:id="@+id/app_bar_layout"/>
 
     <ProgressBar
         android:id="@+id/event_progress_bar"

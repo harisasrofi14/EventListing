@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -28,11 +29,13 @@ public class MainActivity extends AppCompatActivity implements EventPresenter.Vi
     private EventPresenter eventPresenter;
     private EventAdapter eventAdapter;
     CoordinatorLayout coordinatorLayout;
+
     private ArrayList<EventDetailResult> details = new ArrayList<EventDetailResult>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         eventPresenter = new EventPresenter(this);
         eventAdapter = new EventAdapter(null,recyclerItemClickListener);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
@@ -52,16 +55,6 @@ public class MainActivity extends AppCompatActivity implements EventPresenter.Vi
         eventAdapter.notifyDataSetChanged();
     }
 
-//    @Override
-//    public void onSuccessGetEventDetail(DetailEventResult detailList) {
-////        ArrayList<EventDetailResult> details = new ArrayList<>();
-//        //details.add(detailList);
-//        Bundle b = new Bundle();
-//        b.putParcelable("EventDetail",detailList);
-//        Intent i = new Intent(this,DetailActivity.class);
-//        i.putExtras(b);
-//        startActivity(i);
-//    }
 
 
     @Override

@@ -7,8 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +60,8 @@ public class DetailActivity extends AppCompatActivity implements EventDetailPres
         ImageView   iv_event_location = findViewById(R.id.iv_detail_event_location);
         Button      btn_read_more = findViewById(R.id.btn_read_more);
         ImageButton btn_back =  findViewById(R.id.btn_back);
+        LinearLayout wrapper_linear_layout = findViewById(R.id.wrapper_linear_layout);
+        FrameLayout wrapper_frame_layout = findViewById(R.id.wrapper_frame_layout);
 
         Picasso.get().load(detailEventResult.getEventBanner()).into(iv_event_banner);
         tv_event_name.setText(detailEventResult.getEventName());
@@ -103,7 +107,9 @@ public class DetailActivity extends AppCompatActivity implements EventDetailPres
         btn_read_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent(DetailActivity.this, AboutActivity.class);
+                i.putExtra("aboutText", getResources().getString(R.string.dummy_about_text));
+                startActivity(i);
             }
         });
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -138,12 +144,20 @@ public class DetailActivity extends AppCompatActivity implements EventDetailPres
     @Override
     public void showLoading() {
         ProgressBar progressBar = findViewById(R.id.event_detail_progress_bar);
+        LinearLayout wrapper_linear_layout = findViewById(R.id.wrapper_linear_layout);
+        FrameLayout wrapper_frame_layout = findViewById(R.id.wrapper_frame_layout);
         progressBar.setVisibility(View.VISIBLE);
+        wrapper_frame_layout.setVisibility(View.INVISIBLE);
+        wrapper_linear_layout.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void hideLoading() {
         ProgressBar progressBar = findViewById(R.id.event_detail_progress_bar);
+        LinearLayout wrapper_linear_layout = findViewById(R.id.wrapper_linear_layout);
+        FrameLayout wrapper_frame_layout = findViewById(R.id.wrapper_frame_layout);
         progressBar.setVisibility(View.GONE);
+        wrapper_frame_layout.setVisibility(View.VISIBLE);
+        wrapper_linear_layout.setVisibility(View.VISIBLE);
     }
 }

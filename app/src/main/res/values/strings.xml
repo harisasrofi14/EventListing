@@ -11,5 +11,5 @@
     <string name="organizer">Organizer</string>
     <string name="organizer_detail">Organizer Detail</string>
     <string name="follow">Follow</string>
-    <string name="gmpas_api_key">AIzaSyCwi-JX3rsQZSz__DdcNfD5jQdKJ5fUToQ</string>
+    <string name="gmpas_api_key"></string>
 </resources>
