@@ -6,14 +6,17 @@
     android:layout_height="match_parent"
     android:id="@+id/coordinatorLayout"
     tools:context=".view.MainActivity">
+    <include layout="@layout/app_toolbar"/>
+
     <ProgressBar
-        android:layout_marginTop="20dp"
         android:id="@+id/event_progress_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"/>
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:padding="10dp" />
     <com.example.haris.eventlisting.view.VerticalRecyclerView
         android:id="@+id/rv_event"
+        android:layout_marginTop="?android:attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
