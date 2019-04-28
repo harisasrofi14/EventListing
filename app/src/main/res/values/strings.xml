@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">EventListing</string>
     <string name="no_connection">No Internet Connection!</string>
-    <string name="retry">RETRY</string>
+    <string name="retry">RETRY</string>\
+    <string name="dummy_about_text">Piye kabare arek-arek Event Creator Malang? Apakah kamu memiliki masalah dalam pengelolaan event? Atau ingin tahu lebih banyak tentang cara untuk mempromosikan event kamu?
+                                    Dapatkan semua infomrasi lengkap tentang pengelolaan event secara cuma-cuma, hanya di Loket.com Road to Malang. Catat tanggal dan tempatnya ya!</string>
+    <string name="dummy_organizer_text"> As the pioneer of Ticket Management Service in Indonesia, LOKET is here to answer all the problems of the entertainment industry since 2013. LOKET commits to provide end-to-end event technology solutions in creating the best experience in every event, both for the event creators and audiences.</string>
+    <string name="add_to_calender">Add to Calender</string>
+    <string name="about">About</string>
+    <string name="location">Location</string>
+    <string name="organizer">Organizer</string>
+    <string name="organizer_detail">Organizer Detail</string>
+    <string name="follow">Follow</string>
+    <string name="gmpas_api_key">AIzaSyCwi-JX3rsQZSz__DdcNfD5jQdKJ5fUToQ</string>
 </resources>

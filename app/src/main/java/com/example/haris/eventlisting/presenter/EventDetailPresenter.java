@@ -3,7 +3,6 @@ package com.example.haris.eventlisting.presenter;
 import com.example.haris.eventlisting.model.Event.Detail;
 import com.example.haris.eventlisting.model.Event.DetailEventResult;
 import com.example.haris.eventlisting.model.Event.EventDetailResult;
-import com.example.haris.eventlisting.model.Event.EventResult;
 import com.example.haris.eventlisting.model.Header.Header;
 import com.example.haris.eventlisting.network.EventDataSource;
 
@@ -19,42 +18,45 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-public class EventPresenter {
+public class EventDetailPresenter {
+
     private CompositeDisposable composite = new CompositeDisposable();
 
-    private View view;
+    private EventDetailPresenter.View view;
 
-    public interface  View{
-        void onSuccessGetEvent(List<Detail> detailsList);
+
+    public interface View {
+        void onSuccessGetEventDetail(DetailEventResult detailList);
         void onErrorGetEvent(Throwable throwable);
-        void showLoading();
-        void hideLoading();
+        void showLoading ();
+        void hideLoading ();
     }
 
-    public  EventPresenter(EventPresenter.View view){
+    public  EventDetailPresenter(EventDetailPresenter.View view){
         this.view = view;
     }
 
-    public void getEvent(){
+    public void getEventDetail(final Integer eventId){
         view.showLoading();
         Observable.just(EventDataSource.getService("").getHeader("androidtestapi","9f36ed23e4a9249dece874a22e6dfd37").subscribeOn(Schedulers.io())
                 .blockingFirst())
                 .doOnNext(new Consumer<Header>() {
                     @Override
                     public void accept(Header header) throws Exception {
-                       // view.onSuccessGetHeader(header.getResult().getHmac().getAuthorization().getHeader());
+                        // view.onSuccessGetHeader(header.getResult().getHmac().getAuthorization().getHeader());
                     }
                 })
-                .concatMap(new Function<Header, ObservableSource<EventResult>>() {
+                .concatMap(new Function<Header, ObservableSource<EventDetailResult>>() {
                     @Override
-                    public ObservableSource<EventResult> apply(Header header) throws Exception {
+                    public ObservableSource<EventDetailResult> apply(Header header) throws Exception {
+                        // String a= eventId;
                         String h = header.getResult().getHmac().getAuthorization().getHeader();
-                        return EventDataSource.getService(h).getEvent();
+                        return EventDataSource.getService(h).getEventDetail(eventId);
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<EventResult>() {
+                .subscribe(new Observer<EventDetailResult>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         composite.add(d);
@@ -62,8 +64,8 @@ public class EventPresenter {
                     }
 
                     @Override
-                    public void onNext(EventResult eventResult) {
-                        view.onSuccessGetEvent(eventResult.getResult().getDetails());
+                    public void onNext(EventDetailResult eventResult) {
+                        view.onSuccessGetEventDetail(eventResult.getResult());
                         view.hideLoading();
                     }
 
@@ -81,5 +83,4 @@ public class EventPresenter {
                 });
 
     }
-
 }

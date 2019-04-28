@@ -1,5 +1,7 @@
 package com.example.haris.eventlisting.model;
 
+import com.example.haris.eventlisting.model.Event.Detail;
+import com.example.haris.eventlisting.model.Event.Summary;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

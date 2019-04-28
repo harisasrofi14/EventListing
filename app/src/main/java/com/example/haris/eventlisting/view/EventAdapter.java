@@ -10,21 +10,21 @@ import android.widget.TextView;
 
 import com.example.haris.eventlisting.R;
 import com.example.haris.eventlisting.UtilKt;
-import com.example.haris.eventlisting.model.Detail;
+import com.example.haris.eventlisting.model.Event.Detail;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
-    public interface OnItemClickListener {
-        void onItemClick(Detail detail);
-    }
+
     private List<Detail> detailsList;
+    private RecyclerItemClickListener recyclerItemClickListener;
 
 
-    public EventAdapter(List<Detail> detailsList){
+    public EventAdapter(List<Detail> detailsList, RecyclerItemClickListener recyclerItemClickListener){
         setDetailsList(detailsList);
+        this.recyclerItemClickListener = recyclerItemClickListener;
     }
 
     public void  setDetailsList(List<Detail> detailsList){
@@ -42,8 +42,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EventViewHolder eventViewHolder, int i) {
-        eventViewHolder.bind(detailsList.get(i));
+    public void onBindViewHolder(@NonNull EventViewHolder eventViewHolder, final int posisiton) {
+        eventViewHolder.bind(detailsList.get(posisiton));
     }
 
     @Override
@@ -75,6 +75,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             tv_event_price.setText(UtilKt.toMoney(details.getStartPrice(),details.getEndPrice()));
             tv_event_place.setText(String.format("%s %s", details.getSchedules().get(0).getLocation().getLocationName(),details.getSchedules().get(0).getLocation().getProvinceName()));
             tv_event_start_time.setText(UtilKt.timeFormat(details.getStartDate(),details.getEndDate()));
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recyclerItemClickListener.onItemClick(details);
+                }
+            });
 
         }
 

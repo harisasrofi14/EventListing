@@ -1,11 +1,18 @@
-package com.example.haris.eventlisting.model;
+package com.example.haris.eventlisting.model.Event;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.example.haris.eventlisting.model.Event.Group;
+import com.example.haris.eventlisting.model.Event.Location;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Schedule {
+public class Schedule  {
     @SerializedName("id_schedule")
     @Expose
     private Integer idSchedule;
@@ -116,4 +123,6 @@ public class Schedule {
     public void setGroups(List<Group> groups) {
         this.groups = groups;
     }
+
+
 }

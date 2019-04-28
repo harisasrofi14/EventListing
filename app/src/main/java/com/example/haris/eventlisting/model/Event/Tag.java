@@ -1,9 +1,11 @@
-package com.example.haris.eventlisting.model;
+package com.example.haris.eventlisting.model.Event;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Tag {
+import java.io.Serializable;
+
+public class Tag  implements Serializable {
     @SerializedName("id_event_tag")
     @Expose
     private Integer idEventTag;

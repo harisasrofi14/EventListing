@@ -54,6 +54,21 @@ fun timeFormat(strStartDate:String, strFinishDate: String): String {
 
     return "$formattedStartDate - $formattedFinishDate"
 }
+
+fun dateTimeRFC_1123(strStartDate:String): String{
+    val readFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    val writeFormat = SimpleDateFormat("EEE, dd MMM yyyy")
+    var startDate: Date? = null
+    try {
+        startDate = readFormat.parse(strStartDate)
+    } catch (e: ParseException) {
+        e.printStackTrace()
+    }
+
+    return writeFormat.format(startDate)
+
+}
+
 fun toMoney(startPrice:Int, endPrice:Int): String {
     val localeID = Locale("in", "ID")
     val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
@@ -73,4 +88,13 @@ fun isNetworkAvailable(context: Context): Boolean {
         }
     }
     return false
+}
+
+fun toMilis(strStartDate: String): Long {
+    val readFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    val writeFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    val date = writeFormat.parse(strStartDate)
+    val calendar = Calendar.getInstance()
+    calendar.time = date
+    return calendar.timeInMillis
 }

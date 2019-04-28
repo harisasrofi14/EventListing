@@ -1,9 +1,12 @@
-package com.example.haris.eventlisting.model;
+package com.example.haris.eventlisting.model.Event;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Location {
+public class Location  {
     @SerializedName("id_location")
     @Expose
     private Integer idLocation;
@@ -180,4 +183,6 @@ public class Location {
     public void setStatusLocationName(String statusLocationName) {
         this.statusLocationName = statusLocationName;
     }
+
+
 }
